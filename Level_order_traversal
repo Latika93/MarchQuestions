@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Level_order_traversal {
+
+	static Scanner sc= null; 
+	
+	public static void main(String[] args) {
+		sc = new Scanner(System.in);
+		
+		printCurrentLevel(createTree(),3);
+	}
+
+//funtion to create a tree
+	private static Node createTree() {
+		Node root = null;
+		System.out.println("Enter data: ");
+		int data = sc.nextInt();
+		if(data == -1) return null;
+		root = new Node(data);
+		
+		System.out.println("Enter left for " + data);
+		root.left = createTree();
+		
+		System.out.println("Enter right for " + data);
+		root.right = createTree();
+		
+		return root;
+	}
+	
+  
+ //code for printing curent level nodes
+	static void printCurrentLevel(Node root, int level) {
+		
+		if(root==null) return;
+		if(level == 1) {
+			System.out.print(root.data + " ");
+		}
+		else if(level>1){
+			printCurrentLevel(root.left, level-1);	
+			printCurrentLevel(root.right, level-1);	
+		}
+	}
+	
+}
